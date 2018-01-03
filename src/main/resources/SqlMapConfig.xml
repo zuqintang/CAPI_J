@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!-- 当返回数据类型为map，设置callSettersOnNulls会把值为null的key也返回 -->
+    <settings>
+        <setting name="callSettersOnNulls" value="true"/>
+    </settings>
+
+    <!-- 扫描po包下的所有实体类 并且为其设置别名-->
+    <typeAliases>
+        <package name="domain"></package>
+    </typeAliases>
+
+</configuration>
