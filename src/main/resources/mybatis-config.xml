@@ -3,6 +3,12 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+
+	<!-- 当返回数据类型为map，设置callSettersOnNulls会把值为null的key也返回 -->
+    <settings>
+        <setting name="callSettersOnNulls" value="true"/>
+    </settings>
+    
     <!-- 设置别名 -->
     <typeAliases>
         <package name="com.goodwill.domain" />

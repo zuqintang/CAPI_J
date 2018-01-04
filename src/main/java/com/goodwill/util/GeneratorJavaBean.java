@@ -15,12 +15,13 @@ public class GeneratorJavaBean {
 
     public static void main(String[] args) {
         //TODO 直接写表名称（大小写都行），直接会生成到model文件夹中（覆盖）
-        create("edc_user_vs_role");
+        create("VOPTIONS");
     }
 
     public static Connection conn;
-    public static String packagePath = "model";
-    public static String resourcePath = "/src/main/pro";
+    public static String packagePath = "com/goodwill/domain";
+    public static String dotPackagePath = "com.goodwill.domain";    
+    public static String resourcePath = "/src/main/java";
 
     //获取数据库连接
     static {
@@ -92,11 +93,11 @@ public class GeneratorJavaBean {
                 javaClassName.append("_").append(split[i].substring(0, 1).toUpperCase()).append(split[i].substring(1));
             }
             String className = javaClassName.substring(1);
-            StringBuilder header = new StringBuilder("package " + packagePath + ";\n\n" +
+            StringBuilder header = new StringBuilder("package " + dotPackagePath + ";\n\n" +
                     "import java.io.Serializable;\n");
             header.append("import java.sql.*;\n");
             StringBuilder content = new StringBuilder();
-            content.append("\n/**\n" + " * Created by wangnianlei \n")
+            content.append("\n/**\n" + " * Created by GeneratorJavaBean \n")
                     .append(" */\npublic class ")
                     .append(className)
                     .append(" implements Serializable {\n\n");

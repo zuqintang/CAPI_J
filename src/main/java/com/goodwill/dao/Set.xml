@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goodwill.dao.SetDao">
+	<select id="GetSetList" resultType="com.goodwill.domain.Set">
+		SELECT * FROM SETS WHERE (DS_CODE=#{keyword} or DS_NAME like CONCAT('%', #{keyword}, '%'))
+		AND DATA_SET_TYPE = 0 AND STUDY_TYPE = #{study} LIMIT #{limit} OFFSET #{offset}
+	</select>
+	<select id="CountSetList" resultType="Integer">
+		SELECT COUNT(*) FROM SETS WHERE (DS_CODE=#{keyword} or DS_NAME like CONCAT('%', #{keyword}, '%'))
+		AND DATA_SET_TYPE = 0 AND STUDY_TYPE = #{study}
+	</select>
+	
+</mapper>

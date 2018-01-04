@@ -22,6 +22,29 @@ version="3.1" metadata-complete="true">
 </servlet>
 <servlet-mapping>
 <servlet-name>springMVC</servlet-name>
-<url-pattern>*.action</url-pattern>
+<url-pattern>/</url-pattern>
 </servlet-mapping>
+
+<!-- 编码过滤器 -->
+    <filter>
+        <filter-name>encoding</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    <!-- 跨域拦截器 -->
+    <filter>
+        <filter-name>cors</filter-name>
+        <filter-class>com.goodwill.util.SimpleCORSFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>cors</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 </web-app>
