@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goodwill.dao.ElementDao">
+	<select id="GetElementListBySetID" resultType="com.goodwill.domain.Element">
+		SELECT * FROM ELEMENTS LEFT JOIN SET_VS_ELEMENT ON CID = ELEMENTS.ID 
+		WHERE (ELEMENTS.METADATA_IDENTIFY=#{keyword} or ELEMENTS.METADATA_NAME like CONCAT('%', #{keyword}, '%')) 
+		AND FID = #{datasetID} AND CTYPE =2 LIMIT #{limit} OFFSET #{offset}
+	</select>
+	<select id="CountElementListBySetID" resultType="Integer">
+		SELECT COUNT(*) FROM ELEMENTS LEFT JOIN SET_VS_ELEMENT ON CID = ELEMENTS.ID 
+		WHERE (ELEMENTS.METADATA_IDENTIFY=#{keyword} or ELEMENTS.METADATA_NAME like CONCAT('%', #{keyword}, '%')) 
+		AND FID = #{datasetID} AND CTYPE =2
+	</select>	
+</mapper>

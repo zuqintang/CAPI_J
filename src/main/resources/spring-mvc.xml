@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 启动自动扫描 -->
-    <context:component-scan base-package="com.goodwill.web" />
+    <context:component-scan base-package="com.goodwill.*" />
 
     <!-- 注册MVC注解驱动 -->
     <mvc:annotation-driven />

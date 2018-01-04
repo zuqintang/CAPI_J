@@ -9,6 +9,15 @@
 	<select id="CountSetList" resultType="Integer">
 		SELECT COUNT(*) FROM SETS WHERE (DS_CODE=#{keyword} or DS_NAME like CONCAT('%', #{keyword}, '%'))
 		AND DATA_SET_TYPE = 0 AND STUDY_TYPE = #{study}
+	</select>	
+	<select id="GetGroupListBySetID" resultType="com.goodwill.domain.Set">
+		SELECT * FROM SETS LEFT JOIN SET_VS_ELEMENT ON CID = SETS.ID 
+		WHERE (SETS.DS_CODE=#{keyword} or DS_NAME like CONCAT('%', #{keyword}, '%')) 
+		AND FID = #{datasetID} AND CTYPE =1 LIMIT #{limit} OFFSET #{offset}
 	</select>
-	
+	<select id="CountGroupListBySetID" resultType="Integer">
+		SELECT COUNT(*) FROM SETS LEFT JOIN SET_VS_ELEMENT ON CID = SETS.ID 
+		WHERE (SETS.DS_CODE=#{keyword} or DS_NAME like CONCAT('%', #{keyword}, '%')) 
+		AND FID = #{datasetID} AND CTYPE =1
+	</select>	
 </mapper>
