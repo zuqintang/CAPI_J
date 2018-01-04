@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.goodwill.dao.ElementDao;
 import com.goodwill.dao.SetDao;
@@ -53,5 +54,11 @@ public class SetServiceImpl implements SetService{
 			return null;			
 		}
 	}
+
+
+	@Transactional
+	public Integer AddSet(Set set) {
+	        return setDao.AddSet(set);
+	    }
 	
 }

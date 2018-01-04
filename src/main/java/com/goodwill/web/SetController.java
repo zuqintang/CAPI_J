@@ -58,5 +58,19 @@ public class SetController extends BaseController{
 		}
 		return JSONObject.fromObject(execResult);
 	}
+	
+	@RequestMapping(value = "/addSet", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject addSet(Set set) {
+		Object executeResult;
+        int row = setService.AddSet(set);
+        if (row > 0) {
+            executeResult = FromObject(set, 1, "0", "添加成功");
+        } else {
+            executeResult = FromBoolean(false, "添加失败");
+        }
+        JSONObject jsonObject = JSONObject.fromObject(executeResult);
+        return jsonObject;
+	}
 
 }

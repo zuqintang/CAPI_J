@@ -19,5 +19,14 @@
 		SELECT COUNT(*) FROM SETS LEFT JOIN SET_VS_ELEMENT ON CID = SETS.ID 
 		WHERE (SETS.DS_CODE=#{keyword} or DS_NAME like CONCAT('%', #{keyword}, '%')) 
 		AND FID = #{datasetID} AND CTYPE =1
-	</select>	
+	</select>
+	<insert id="AddSet" parameterType="Set">
+        INSERT INTO SETS(
+          `DS_CODE`, `DS_NAME`, `PYM`, `WBM`, `CREATOR`, `CREATED_AT`, `UPDATED_AT`, `DS_GROUP`, `YEAR_VERSION`, `DIS_GROUP`, `DATA_SET_TYPE`, `STUDY_TYPE`, `STANDARD`
+        ) VALUES (
+          #{DS_CODE},#{DS_NAME},#{PYM},#{WBM},#{CREATOR},
+          #{CREATED_AT},#{UPDATED_AT},#{DS_GROUP},#{YEAR_VERSION},#{DIS_GROUP},
+          #{DATA_SET_TYPE},#{STUDY_TYPE},#{STANDARD}
+        )
+    </insert>	
 </mapper>
