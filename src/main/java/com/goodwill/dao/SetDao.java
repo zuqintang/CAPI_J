@@ -9,9 +9,10 @@ import com.goodwill.domain.Set;
 
 
 public interface SetDao {
-	public abstract List<Set> GetSetList(@Param("study")String study,@Param("keyword")String keyword,@Param("limit")int limit,@Param("offset")int offset);
-	public abstract Integer CountSetList(@Param("study")String study,@Param("keyword")String keyword);
+	public abstract List<Set> GetSetList(@Param("standard")String standard,@Param("study")String study,@Param("keyword")String keyword,@Param("limit")int limit,@Param("offset")int offset);
+	public abstract Integer CountSetList(@Param("standard")String standard,@Param("study")String study,@Param("keyword")String keyword);
 	public abstract List<T> GetGroupListBySetID(@Param("datasetID")String datasetID,@Param("keyword")String keyword,@Param("limit")int limit,@Param("offset")int offset);
 	public abstract Integer CountGroupListBySetID(@Param("datasetID")String datasetID,@Param("keyword")String keyword);
-	Integer AddSet(Set set);
+	public abstract Integer AddSet(Set set);
+	public abstract List<Set> GetSetInfo(Integer ID);
 }

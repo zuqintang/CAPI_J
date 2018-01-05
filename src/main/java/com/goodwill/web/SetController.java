@@ -23,14 +23,14 @@ public class SetController extends BaseController{
 	
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject search(String study,String keyword,int limit,int offset) {
+	public JSONObject search(String standard,String study,String keyword,int limit,int offset) {
 		Object execResult;
 		try {
-            List<Set> list = setService.GetSetList(study,keyword,limit,offset);
+            List<Set> list = setService.GetSetList(standard,study,keyword,limit,offset);
             if (list == null || list.size() == 0) {
                 execResult = FromObject(list, list.size(), "1", "没有找到匹配的记录");
             } else {
-            	long total = setService.CountSetList(study,keyword);
+            	long total = setService.CountSetList(standard,study,keyword);
             	long PageNum = (long)(Math.ceil((float)total/10));
                 execResult = FromObject(list, PageNum, "0", "查询成功");
             }
@@ -71,6 +71,24 @@ public class SetController extends BaseController{
         }
         JSONObject jsonObject = JSONObject.fromObject(executeResult);
         return jsonObject;
+	}
+	
+	@RequestMapping(value = "/searchSetInfo", method = RequestMethod.POST)
+	@ResponseBody
+	public JSONObject searchSetInfo(Integer ID) {
+		System.out.println(ID);
+		Object execResult;
+		try {
+			List<Set> list = setService.GetSetInfo(ID);
+			if (list == null || list.size() == 0) {
+				execResult = FromObject(list, list.size(), "1", "没有找到匹配的记录");
+			} else {
+				execResult = FromObject(list, 1, "0", "查询成功");
+			}
+		} catch (Exception e) {
+			execResult = FromBoolean(false, e.getMessage());
+		}
+		return JSONObject.fromObject(execResult);
 	}
 
 }

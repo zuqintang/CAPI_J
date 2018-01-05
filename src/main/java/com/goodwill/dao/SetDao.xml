@@ -3,30 +3,54 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.goodwill.dao.SetDao">
 	<select id="GetSetList" resultType="com.goodwill.domain.Set">
-		SELECT * FROM SETS WHERE (DS_CODE=#{keyword} or DS_NAME like CONCAT('%', #{keyword}, '%'))
-		AND DATA_SET_TYPE = 0 AND STUDY_TYPE = #{study} LIMIT #{limit} OFFSET #{offset}
+		SELECT * FROM SETS WHERE (DS_CODE=#{keyword} or DS_NAME like
+		CONCAT('%', #{keyword}, '%'))
+		AND DATA_SET_TYPE = 0
+		<if test="study != null and study !=-1">
+			AND STUDY_TYPE = #{study}
+		</if>
+		<if test="standard != null and standard !=-1">
+			AND STANDARD = #{standard}
+		</if>
+		ORDER BY CREATED_AT DESC LIMIT #{limit} OFFSET #{offset}
 	</select>
 	<select id="CountSetList" resultType="Integer">
-		SELECT COUNT(*) FROM SETS WHERE (DS_CODE=#{keyword} or DS_NAME like CONCAT('%', #{keyword}, '%'))
-		AND DATA_SET_TYPE = 0 AND STUDY_TYPE = #{study}
-	</select>	
+		SELECT COUNT(*) FROM SETS WHERE (DS_CODE=#{keyword} or DS_NAME like
+		CONCAT('%', #{keyword}, '%'))
+		AND DATA_SET_TYPE = 0
+		<if test="study != null and study !=-1">
+			AND STUDY_TYPE = #{study}
+		</if>
+		<if test="standard != null and standard !=-1">
+			AND STANDARD = #{standard}
+		</if>
+	</select>
 	<select id="GetGroupListBySetID" resultType="com.goodwill.domain.Set">
-		SELECT * FROM SETS LEFT JOIN SET_VS_ELEMENT ON CID = SETS.ID 
-		WHERE (SETS.DS_CODE=#{keyword} or DS_NAME like CONCAT('%', #{keyword}, '%')) 
+		SELECT * FROM SETS
+		LEFT JOIN SET_VS_ELEMENT ON CID = SETS.ID
+		WHERE (SETS.DS_CODE=#{keyword} or DS_NAME like CONCAT('%', #{keyword},
+		'%'))
 		AND FID = #{datasetID} AND CTYPE =1 LIMIT #{limit} OFFSET #{offset}
 	</select>
 	<select id="CountGroupListBySetID" resultType="Integer">
-		SELECT COUNT(*) FROM SETS LEFT JOIN SET_VS_ELEMENT ON CID = SETS.ID 
-		WHERE (SETS.DS_CODE=#{keyword} or DS_NAME like CONCAT('%', #{keyword}, '%')) 
+		SELECT COUNT(*)
+		FROM SETS LEFT JOIN SET_VS_ELEMENT ON CID = SETS.ID
+		WHERE (SETS.DS_CODE=#{keyword} or DS_NAME like CONCAT('%', #{keyword},
+		'%'))
 		AND FID = #{datasetID} AND CTYPE =1
 	</select>
 	<insert id="AddSet" parameterType="Set">
-        INSERT INTO SETS(
-          `DS_CODE`, `DS_NAME`, `PYM`, `WBM`, `CREATOR`, `CREATED_AT`, `UPDATED_AT`, `DS_GROUP`, `YEAR_VERSION`, `DIS_GROUP`, `DATA_SET_TYPE`, `STUDY_TYPE`, `STANDARD`
-        ) VALUES (
-          #{DS_CODE},#{DS_NAME},#{PYM},#{WBM},#{CREATOR},
-          #{CREATED_AT},#{UPDATED_AT},#{DS_GROUP},#{YEAR_VERSION},#{DIS_GROUP},
-          #{DATA_SET_TYPE},#{STUDY_TYPE},#{STANDARD}
-        )
-    </insert>	
+		INSERT INTO SETS(
+		`DS_CODE`, `DS_NAME`, `PYM`, `WBM`, `CREATOR`, `CREATED_AT`, `UPDATED_AT`,
+		`DS_GROUP`, `YEAR_VERSION`, `DIS_GROUP`, `DATA_SET_TYPE`,
+		`STUDY_TYPE`, `STANDARD`
+		) VALUES (
+		#{DS_CODE},#{DS_NAME},#{PYM},#{WBM},#{CREATOR},
+		#{CREATED_AT},#{UPDATED_AT},#{DS_GROUP},#{YEAR_VERSION},#{DIS_GROUP},
+		#{DATA_SET_TYPE},#{STUDY_TYPE},#{STANDARD}
+		)
+	</insert>
+	<select id="GetSetInfo" resultType="com.goodwill.domain.Set">
+		SELECT * FROM SETS WHERE ID=#{ID} 
+	</select>
 </mapper>

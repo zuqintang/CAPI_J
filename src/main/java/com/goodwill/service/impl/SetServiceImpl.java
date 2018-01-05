@@ -21,13 +21,13 @@ public class SetServiceImpl implements SetService{
 	@Autowired
 	private ElementDao elementDao;
 
-	public List<Set> GetSetList(String study, String keyword, Integer limit, Integer offset) {
-		return setDao.GetSetList(study, keyword, limit, offset);
+	public List<Set> GetSetList(String standard,String study, String keyword, Integer limit, Integer offset) {
+		return setDao.GetSetList(standard,study, keyword, limit, offset);
 	}
 
 
-	public Integer CountSetList(String study, String keyword) {
-		return setDao.CountSetList(study, keyword);
+	public Integer CountSetList(String standard,String study, String keyword) {
+		return setDao.CountSetList(standard,study, keyword);
 	}
 	
 	public List<T> GetChildrenList(Integer activeItem,String datasetID,String keyword,Integer limit,Integer offset) {
@@ -60,5 +60,11 @@ public class SetServiceImpl implements SetService{
 	public Integer AddSet(Set set) {
 	        return setDao.AddSet(set);
 	    }
+
+
+	@Override
+	public List<Set> GetSetInfo(Integer ID) {
+		return setDao.GetSetInfo(ID);
+	}
 	
 }
