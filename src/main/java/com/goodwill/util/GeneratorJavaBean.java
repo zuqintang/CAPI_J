@@ -15,7 +15,7 @@ public class GeneratorJavaBean {
 
     public static void main(String[] args) {
         //TODO 直接写表名称（大小写都行），直接会生成到model文件夹中（覆盖）
-        create("VOPTIONS");
+        create("USES");
     }
 
     public static Connection conn;

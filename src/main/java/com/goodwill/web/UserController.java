@@ -30,9 +30,9 @@ public class UserController {
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ModelAndView login(User model, HttpSession session) {
-        User user = userDao.findByUsername(model.getUsername());
+        User user = userDao.findByUsername(model.getusername());
 
-        if (user == null || !user.getPassword().equals(model.getPassword())) {
+        if (user == null || !user.getpassword().equals(model.getpassword())) {
             return new ModelAndView("redirect:/login.jsp");
         } else {
             session.setAttribute("user", user);

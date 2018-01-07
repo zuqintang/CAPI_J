@@ -1,51 +1,74 @@
 package com.goodwill.domain;
 
+import java.io.Serializable;
+import java.sql.*;
+
 /**
- * 
- * 用户信息
- * @author tangzuqin
- *
+ * Created by GeneratorJavaBean 
  */
-public class User {
-	// 成员变量
-    private Integer userid;
-    private String username;
-    private String password;
+public class User implements Serializable {
 
-    // 构造函数
-    public User() {
-        super();
+    private Integer id ;
+
+    private String username ;
+
+    private String password ;
+
+    private String realname ;
+
+    private String roler ;
+
+    /**
+     *  统计1
+     */
+    private Integer COUNTA ;
+
+    public Integer getid() {
+        return id;
     }
 
-    public User(Integer userid, String username, String password) {
-        super();
-        this.userid = userid;
-        this.username = username;
-        this.password = password;
+    public void setid(Integer id) {
+        this.id = id;
     }
 
-    // 成员方法
-    public Integer getUserid() {
-        return userid;
-    }
-
-    public void setUserid(Integer userid) {
-        this.userid = userid;
-    }
-
-    public String getUsername() {
+    public String getusername() {
         return username;
     }
 
-    public void setUsername(String username) {
+    public void setusername(String username) {
         this.username = username;
     }
 
-    public String getPassword() {
+    public String getpassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setpassword(String password) {
         this.password = password;
     }
+
+    public String getrealname() {
+        return realname;
+    }
+
+    public void setrealname(String realname) {
+        this.realname = realname;
+    }
+
+    public String getroler() {
+        return roler;
+    }
+
+    public void setroler(String roler) {
+        this.roler = roler;
+    }
+
+    public Integer getCOUNTA() {
+        return COUNTA;
+    }
+
+    public void setCOUNTA(Integer COUNTA) {
+        this.COUNTA = COUNTA;
+    }
+
 }

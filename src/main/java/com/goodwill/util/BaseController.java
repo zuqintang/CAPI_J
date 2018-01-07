@@ -1,6 +1,12 @@
 package com.goodwill.util;
 
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import org.springframework.web.bind.annotation.ModelAttribute;
+
 import net.sf.json.JsonConfig;
 import net.sf.json.processors.DefaultValueProcessor;
 
@@ -8,7 +14,16 @@ import net.sf.json.processors.DefaultValueProcessor;
  * 控制器基类.
  */
 public class BaseController {
-
+	protected HttpServletRequest request;  
+    protected HttpServletResponse response;  
+    protected HttpSession session;  
+  
+    @ModelAttribute  
+    public void setReqAndRes(HttpServletRequest request, HttpServletResponse response){  
+        this.request = request;  
+        this.response = response;  
+        this.session = request.getSession();  
+    }  
 
     //全局设置Integer类型为空的默认值 json-lib默认是0
     protected JsonConfig jsonConfig = new JsonConfig();
