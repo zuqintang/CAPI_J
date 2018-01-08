@@ -12,7 +12,13 @@
 		<if test="standard != null and standard !=-1">
 			AND STANDARD = #{standard}
 		</if>
-		ORDER BY CREATED_AT DESC LIMIT #{limit} OFFSET #{offset}
+		ORDER BY CREATED_AT DESC
+		<if test="limit != null and limit !=-1"> 
+		LIMIT #{limit}
+		</if>
+		<if test="offset != null and offset !=-1">
+		OFFSET #{offset}
+		</if> 
 	</select>
 	<select id="CountSetList" resultType="Integer">
 		SELECT COUNT(*) FROM SETS WHERE (DS_CODE=#{keyword} or DS_NAME like
