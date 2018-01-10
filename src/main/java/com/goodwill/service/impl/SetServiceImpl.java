@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.goodwill.dao.ElementDao;
+import com.goodwill.dao.MetaDataDao;
 import com.goodwill.dao.SetDao;
 import com.goodwill.domain.Set;
 import com.goodwill.service.SetService;
@@ -19,7 +19,7 @@ public class SetServiceImpl implements SetService{
 	private SetDao setDao;
 	
 	@Autowired
-	private ElementDao elementDao;
+	private MetaDataDao metaDataDao;
 
 	public List<Set> GetSetList(String standard,String study, String keyword, Integer limit, Integer offset) {
 		return setDao.GetSetList(standard,study, keyword, limit, offset);
@@ -36,7 +36,7 @@ public class SetServiceImpl implements SetService{
 			return setDao.GetGroupListBySetID(datasetID, keyword, limit, offset);
 		}else if(activeItem == 2)
 		{
-			return elementDao.GetElementListBySetID(datasetID,keyword, limit, offset);
+			return metaDataDao.GetElementListBySetID(datasetID,keyword, limit, offset);
 		}else 
 		{
 			return null;
@@ -48,7 +48,7 @@ public class SetServiceImpl implements SetService{
 		if(activeItem == 1) {
 			return setDao.CountGroupListBySetID(datasetID, keyword);			
 		}else if(activeItem == 2) {
-			return elementDao.CountElementListBySetID(datasetID,keyword);
+			return metaDataDao.CountElementListBySetID(datasetID,keyword);
 		}else
 		{
 			return null;			

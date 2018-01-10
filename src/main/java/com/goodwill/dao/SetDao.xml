@@ -59,4 +59,16 @@
 	<select id="GetSetInfo" resultType="com.goodwill.domain.Set">
 		SELECT * FROM SETS WHERE ID=#{ID} 
 	</select>
+	<select id="SumSetByStandards" resultType="com.goodwill.domain.SumResult">
+		SELECT STANDARD AS FLAG,
+			   COUNT(*) AS TOTAL FROM SETS 
+			   WHERE DATA_SET_TYPE=#{DATA_SET_TYPE} 
+			   GROUP BY STANDARD
+	</select>
+	<select id="SumSetByStatus" resultType="com.goodwill.domain.SumResult">
+        SELECT STATUS AS FLAG,
+        	   COUNT(*) AS TOTAL FROM SETS 
+        	   WHERE DATA_SET_TYPE=#{DATA_SET_TYPE}
+        	   GROUP BY STATUS
+    </select>
 </mapper>

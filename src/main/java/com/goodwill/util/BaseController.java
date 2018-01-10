@@ -14,6 +14,13 @@ import net.sf.json.processors.DefaultValueProcessor;
  * 控制器基类.
  */
 public class BaseController {
+	public static final int DATA_SET_TYPE=0;
+	public static final int DATA_GROUP_TYPE=1;
+	public static final int DATA_ELEMENT_TYPE=2;
+	public static final int DATA_CONCEPT_TYPE=3;
+	public static final int DATA_FIELDCODE_TYPE=4;
+	public static final int DATA_OPTION_TYPE=5;
+	
 	protected HttpServletRequest request;  
     protected HttpServletResponse response;  
     protected HttpSession session;  
@@ -51,6 +58,5 @@ public class BaseController {
         dr.setRows(result);
         dr.setTotal(total);
         return dr;
-    }
-    
+    }    
 }
