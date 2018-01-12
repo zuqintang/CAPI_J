@@ -23,9 +23,9 @@ public class StatisticController extends BaseController {
 	@Resource
 	private StatisticService statisticService;
 	
-	@RequestMapping(value = "/sumdatafimaly", method = RequestMethod.POST)
+	@RequestMapping(value = "/fetchFimaly", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject search()
+	public JSONObject FetchFimaly()
 	{
 		Object execResult;
 		try {

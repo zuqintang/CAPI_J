@@ -16,14 +16,14 @@ import com.goodwill.service.SetService;
 
 
 @Controller
-@RequestMapping(value="/Dataset")
+@RequestMapping(value="/set")
 public class SetController extends BaseController{
 	@Resource
 	private SetService setService;
 	
-	@RequestMapping(value = "/search", method = RequestMethod.POST)
+	@RequestMapping(value = "/fetchSets", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject search(String standard,String study,String keyword,int limit,int offset) {
+	public JSONObject FetchSets(String standard,String study,String keyword,int limit,int offset) {
 		Object execResult;
 		try {
             List<Set> list = setService.GetSetList(standard,study,keyword,limit,offset);
@@ -40,9 +40,9 @@ public class SetController extends BaseController{
 		return JSONObject.fromObject(execResult);
 	}
 	
-	@RequestMapping(value = "/searchSetChildren", method = RequestMethod.POST)
+	@RequestMapping(value = "/fetchSetChildren", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject searchSetChildren(Integer activeItem,String datasetID,String keyword,int limit,int offset) {
+	public JSONObject FetchSetChildren(Integer activeItem,String datasetID,String keyword,int limit,int offset) {
 		Object execResult;
 		try {
 			List<T> list = setService.GetChildrenList(activeItem,datasetID,keyword,limit,offset);
@@ -59,9 +59,9 @@ public class SetController extends BaseController{
 		return JSONObject.fromObject(execResult);
 	}
 	
-	@RequestMapping(value = "/addSet", method = RequestMethod.POST)
+	@RequestMapping(value = "/saveSet", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject addSet(Set set) {
+	public JSONObject SaveSet(Set set) {
 		Object executeResult;
         int row = setService.AddSet(set);
         if (row > 0) {
@@ -73,9 +73,9 @@ public class SetController extends BaseController{
         return jsonObject;
 	}
 	
-	@RequestMapping(value = "/searchSetInfo", method = RequestMethod.POST)
+	@RequestMapping(value = "/fetchSet", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject searchSetInfo(Integer ID) {
+	public JSONObject FetchSet(Integer ID) {
 		System.out.println(ID);
 		Object execResult;
 		try {
