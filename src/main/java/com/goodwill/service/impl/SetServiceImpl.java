@@ -1,6 +1,7 @@
 package com.goodwill.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,13 @@ public class SetServiceImpl implements SetService{
 	@Autowired
 	private MetaDataDao metaDataDao;
 
-	public List<Set> GetSetList(String standard,String study, String keyword, Integer limit, Integer offset) {
-		return setDao.GetSetList(standard,study, keyword, limit, offset);
+	public List<Set> GetSetList(Map<String,Object> param) {
+		return setDao.GetSetList(param);
 	}
 
 
-	public Integer CountSetList(String standard,String study, String keyword) {
-		return setDao.CountSetList(standard,study, keyword);
+	public Integer CountSetList(Map<String,Object> param) {
+		return setDao.CountSetList(param);
 	}
 	
 	public List<T> GetChildrenList(Integer activeItem,String datasetID,String keyword,Integer limit,Integer offset) {

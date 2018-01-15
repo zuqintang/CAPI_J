@@ -1,11 +1,14 @@
 package com.goodwill.web;
 
 import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
 import net.sf.json.JSONObject;
 
 import org.apache.poi.ss.formula.functions.T;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,14 +26,14 @@ public class SetController extends BaseController{
 	
 	@RequestMapping(value = "/fetchSets", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject FetchSets(String standard,String study,String keyword,int limit,int offset) {
+	public JSONObject FetchSets(@RequestBody Map<String,Object> param) {
 		Object execResult;
 		try {
-            List<Set> list = setService.GetSetList(standard,study,keyword,limit,offset);
+            List<Set> list = setService.GetSetList(param);
             if (list == null || list.size() == 0) {
                 execResult = FromObject(list, list.size(), "1", "没有找到匹配的记录");
             } else {
-            	long total = setService.CountSetList(standard,study,keyword);
+            	long total = setService.CountSetList(param);
             	long PageNum = (long)(Math.ceil((float)total/10));
                 execResult = FromObject(list, PageNum, "0", "查询成功");
             }
