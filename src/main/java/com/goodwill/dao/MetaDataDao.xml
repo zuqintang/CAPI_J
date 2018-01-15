@@ -22,4 +22,13 @@
 			   FROM ELEMENTS
 	           GROUP BY `STATUS`
 	</select>
+	<select id="GetMetaList" resultType="com.goodwill.domain.Element" parameterType="java.util.Map">
+		SELECT * FROM ELEMENTS WHERE (METADATA_IDENTIFY=#{query} or METADATA_NAME like
+		CONCAT('%', #{query}, '%'))		
+		ORDER BY CREATE_DATE DESC LIMIT #{limit} OFFSET #{offset}
+	</select>
+	<select id="CountMetaList" resultType="Integer" parameterType="java.util.Map">
+		SELECT COUNT(*) FROM ELEMENTS WHERE METADATA_IDENTIFY=#{query} or METADATA_NAME like
+		CONCAT('%', #{query}, '%')
+	</select>
 </mapper>
