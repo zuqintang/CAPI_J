@@ -3,32 +3,77 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.goodwill.dao.MetaDataDao">
 	<select id="GetElementListBySetID" resultType="com.goodwill.domain.Element">
-		SELECT * FROM ELEMENTS LEFT JOIN SET_VS_ELEMENT ON CID = ELEMENTS.ID 
-		WHERE (ELEMENTS.METADATA_IDENTIFY=#{keyword} or ELEMENTS.METADATA_NAME like CONCAT('%', #{keyword}, '%')) 
+		SELECT * FROM
+		ELEMENTS LEFT JOIN SET_VS_ELEMENT ON CID = ELEMENTS.ID
+		WHERE (ELEMENTS.METADATA_IDENTIFY=#{keyword} or ELEMENTS.METADATA_NAME like
+		CONCAT('%', #{keyword}, '%'))
 		AND FID = #{datasetID} AND CTYPE =2 LIMIT #{limit} OFFSET #{offset}
 	</select>
 	<select id="CountElementListBySetID" resultType="Integer">
-		SELECT COUNT(*) FROM ELEMENTS LEFT JOIN SET_VS_ELEMENT ON CID = ELEMENTS.ID 
-		WHERE (ELEMENTS.METADATA_IDENTIFY=#{keyword} or ELEMENTS.METADATA_NAME like CONCAT('%', #{keyword}, '%')) 
+		SELECT COUNT(*)
+		FROM ELEMENTS LEFT JOIN SET_VS_ELEMENT ON CID = ELEMENTS.ID
+		WHERE (ELEMENTS.METADATA_IDENTIFY=#{keyword} or ELEMENTS.METADATA_NAME like
+		CONCAT('%', #{keyword}, '%'))
 		AND FID = #{datasetID} AND CTYPE =2
-	</select>	
+	</select>
 	<select id="SumMetaDataByStandards" resultType="com.goodwill.domain.SumResult">
-		SELECT STANDARD AS FLAG ,COUNT(METADATA_IDENTIFY) AS TOTAL
-			   FROM ELEMENTS
-			   GROUP BY STANDARD
+		SELECT STANDARD
+		AS FLAG ,COUNT(METADATA_IDENTIFY) AS TOTAL
+		FROM ELEMENTS
+		GROUP BY STANDARD
 	</select>
-	<select id="SumMetaDataByStatus" resultType="com.goodwill.domain.SumResult">	
+	<select id="SumMetaDataByStatus" resultType="com.goodwill.domain.SumResult">
 		SELECT STATUS AS FLAG ,COUNT(METADATA_IDENTIFY) AS TOTAL
-			   FROM ELEMENTS
-	           GROUP BY `STATUS`
+		FROM ELEMENTS
+		GROUP BY `STATUS`
 	</select>
-	<select id="GetMetaList" resultType="com.goodwill.domain.Element" parameterType="java.util.Map">
-		SELECT * FROM ELEMENTS WHERE (METADATA_IDENTIFY=#{query} or METADATA_NAME like
-		CONCAT('%', #{query}, '%'))		
+	<select id="GetMetaList" resultType="com.goodwill.domain.Element"
+		parameterType="java.util.Map">
+		SELECT * FROM ELEMENTS WHERE (METADATA_IDENTIFY=#{query} or
+		METADATA_NAME like
+		CONCAT('%', #{query}, '%'))
+		<if test="standard != null and standard !=-1">
+			AND STANDARD = #{standard}
+		</if>
 		ORDER BY CREATE_DATE DESC LIMIT #{limit} OFFSET #{offset}
 	</select>
 	<select id="CountMetaList" resultType="Integer" parameterType="java.util.Map">
-		SELECT COUNT(*) FROM ELEMENTS WHERE METADATA_IDENTIFY=#{query} or METADATA_NAME like
+		SELECT COUNT(*) FROM ELEMENTS WHERE METADATA_IDENTIFY=#{query} or
+		METADATA_NAME like
 		CONCAT('%', #{query}, '%')
+		<if test="standard != null and standard !=-1">
+			AND STANDARD = #{standard}
+		</if>
+	</select>
+	<select id="GetFieldcodeList" resultType="com.goodwill.domain.Field_Code"
+		parameterType="java.util.Map">
+		SELECT * FROM FIELD_CODES a
+		LEFT JOIN ELEMENTS b
+		ON a.FIELDCODE_TABLECODE =b.FIELDCODE_TABLECODE
+		WHERE
+		(a.FIELDCODE_TABLECODE=#{keyword} or a.FIELDCODE_NAME like
+		CONCAT('%',
+		#{keyword}, '%')) AND b.ID = #{elementID}
+		ORDER BY a.CREATE_DATE DESC LIMIT #{limit} OFFSET #{offset}
+	</select>
+	<select id="GetOptionList" resultType="com.goodwill.domain.Voption"
+		parameterType="java.util.Map">
+		SELECT * FROM VOPTIONS a
+		LEFT JOIN FIELD_CODES b
+		ON a.FIELDCODE_TABLECODE =b.FIELDCODE_TABLECODE
+		WHERE
+		(a.FIELDCODE_TABLECODE=#{keyword} or a.FIELDCODE_VALUE_CN_NAME like
+		CONCAT('%',
+		#{keyword}, '%')) AND b.ID = #{fieldcodeID}
+		ORDER BY a.FIELDORDER LIMIT #{limit} OFFSET #{offset}
+	</select>
+	<select id="CountOptionList" resultType="Integer" parameterType="java.util.Map">
+		SELECT COUNT(*) FROM VOPTIONS a
+		LEFT JOIN FIELD_CODES b
+		ON a.FIELDCODE_TABLECODE =b.FIELDCODE_TABLECODE
+		WHERE
+		(a.FIELDCODE_TABLECODE=#{keyword} or a.FIELDCODE_VALUE_CN_NAME like
+		CONCAT('%',
+		#{keyword}, '%')) AND b.ID = #{fieldcodeID}
 	</select>
 </mapper>

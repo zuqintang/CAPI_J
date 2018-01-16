@@ -10,61 +10,75 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.goodwill.dao.MetaDataDao;
 import com.goodwill.dao.SetDao;
+import com.goodwill.domain.Element;
+import com.goodwill.domain.Field_Code;
 import com.goodwill.domain.Set;
+import com.goodwill.domain.Voption;
 import com.goodwill.service.MetadataService;
 import com.goodwill.service.SetService;
 
 @Service
-public class MetadataServiceImpl implements MetadataService{
+public class MetadataServiceImpl implements MetadataService {
 
-	
 	@Autowired
 	private MetaDataDao metaDataDao;
 
-	public List<Set> GetMetaList(Map<String,Object> param) {
+	public List<Element> GetMetaList(Map<String, Object> param) {
 		return metaDataDao.GetMetaList(param);
 	}
 
-
-	public Integer CountMetaList(Map<String,Object> param) {
+	public Integer CountMetaList(Map<String, Object> param) {
 		return metaDataDao.CountMetaList(param);
 	}
-	
-//	public List<T> GetChildrenList(Integer activeItem,String datasetID,String keyword,Integer limit,Integer offset) {
-//		if(activeItem == 1) 
-//		{
-//			return setDao.GetGroupListBySetID(datasetID, keyword, limit, offset);
-//		}else if(activeItem == 2)
-//		{
-//			return metaDataDao.GetElementListBySetID(datasetID,keyword, limit, offset);
-//		}else 
-//		{
-//			return null;
-//		}
-//	}
-//	
-//	
-//	public Integer CountChildrenList(Integer activeItem,String datasetID,String keyword) {
-//		if(activeItem == 1) {
-//			return setDao.CountGroupListBySetID(datasetID, keyword);			
-//		}else if(activeItem == 2) {
-//			return metaDataDao.CountElementListBySetID(datasetID,keyword);
-//		}else
-//		{
-//			return null;			
-//		}
-//	}
-//
-//
-//	@Transactional
-//	public Integer AddSet(Set set) {
-//	        return setDao.AddSet(set);
-//	    }
-//
-//
-//	@Override
-//	public List<Set> GetSetInfo(Integer ID) {
-//		return setDao.GetSetInfo(ID);
-//	}
-//	
+
+	public List<Field_Code> GetFieldcodeList(Map<String, Object> param) {
+		return metaDataDao.GetFieldcodeList(param);
+	}
+
+	public List<Voption> GetOptionList(Map<String, Object> param) {
+		return metaDataDao.GetOptionList(param);
+	}
+
+	public Integer CountOptionList(Map<String, Object> param) {
+		return metaDataDao.CountOptionList(param);
+	}
+	// public List<T> GetChildrenList(Integer activeItem,String datasetID,String
+	// keyword,Integer limit,Integer offset) {
+	// if(activeItem == 1)
+	// {
+	// return setDao.GetGroupListBySetID(datasetID, keyword, limit, offset);
+	// }else if(activeItem == 2)
+	// {
+	// return metaDataDao.GetElementListBySetID(datasetID,keyword, limit, offset);
+	// }else
+	// {
+	// return null;
+	// }
+	// }
+	//
+	//
+	// public Integer CountChildrenList(Integer activeItem,String datasetID,String
+	// keyword) {
+	// if(activeItem == 1) {
+	// return setDao.CountGroupListBySetID(datasetID, keyword);
+	// }else if(activeItem == 2) {
+	// return metaDataDao.CountElementListBySetID(datasetID,keyword);
+	// }else
+	// {
+	// return null;
+	// }
+	// }
+	//
+	//
+	// @Transactional
+	// public Integer AddSet(Set set) {
+	// return setDao.AddSet(set);
+	// }
+	//
+	//
+	// @Override
+	// public List<Set> GetSetInfo(Integer ID) {
+	// return setDao.GetSetInfo(ID);
+	// }
+	//
 }
