@@ -14,6 +14,10 @@ public interface MetadataService {
 
 	List<Field_Code> GetFieldcodeList(Map<String, Object> param);
 	
+	List<Field_Code> GetFieldcodesList(Map<String, Object> param);
+	
+	Integer CountFieldcodesList(Map<String, Object> param);
+	
 	List<Voption> GetOptionList(Map<String, Object> param);
 
 	Integer CountOptionList(Map<String, Object> param);

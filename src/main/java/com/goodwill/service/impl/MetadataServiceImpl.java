@@ -42,43 +42,12 @@ public class MetadataServiceImpl implements MetadataService {
 	public Integer CountOptionList(Map<String, Object> param) {
 		return metaDataDao.CountOptionList(param);
 	}
-	// public List<T> GetChildrenList(Integer activeItem,String datasetID,String
-	// keyword,Integer limit,Integer offset) {
-	// if(activeItem == 1)
-	// {
-	// return setDao.GetGroupListBySetID(datasetID, keyword, limit, offset);
-	// }else if(activeItem == 2)
-	// {
-	// return metaDataDao.GetElementListBySetID(datasetID,keyword, limit, offset);
-	// }else
-	// {
-	// return null;
-	// }
-	// }
-	//
-	//
-	// public Integer CountChildrenList(Integer activeItem,String datasetID,String
-	// keyword) {
-	// if(activeItem == 1) {
-	// return setDao.CountGroupListBySetID(datasetID, keyword);
-	// }else if(activeItem == 2) {
-	// return metaDataDao.CountElementListBySetID(datasetID,keyword);
-	// }else
-	// {
-	// return null;
-	// }
-	// }
-	//
-	//
-	// @Transactional
-	// public Integer AddSet(Set set) {
-	// return setDao.AddSet(set);
-	// }
-	//
-	//
-	// @Override
-	// public List<Set> GetSetInfo(Integer ID) {
-	// return setDao.GetSetInfo(ID);
-	// }
-	//
+	
+	public List<Field_Code> GetFieldcodesList(Map<String, Object> param) {
+		return metaDataDao.GetFieldcodeList(param);
+	}
+
+	public Integer CountFieldcodesList(Map<String, Object> param) {
+		return metaDataDao.CountFieldcodesList(param);
+	}
 }

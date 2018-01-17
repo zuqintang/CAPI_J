@@ -45,14 +45,14 @@ public class SetController extends BaseController{
 	
 	@RequestMapping(value = "/fetchSetChildren", method = RequestMethod.POST)
 	@ResponseBody
-	public JSONObject FetchSetChildren(Integer activeItem,String datasetID,String keyword,int limit,int offset) {
+	public JSONObject FetchSetChildren(@RequestBody Map<String,Object> param) {
 		Object execResult;
 		try {
-			List<T> list = setService.GetChildrenList(activeItem,datasetID,keyword,limit,offset);
+			List<T> list = setService.GetChildrenList(param);
 			if (list == null || list.size() == 0) {
 				execResult = FromObject(list, list.size(), "1", "没有找到匹配的记录");
 			} else {
-				long total = setService.CountChildrenList(activeItem,datasetID,keyword);
+				long total = setService.CountChildrenList(param);
 				long PageNum = (long)(Math.ceil((float)total/10));
 				execResult = FromObject(list, PageNum, "0", "查询成功");
 			}

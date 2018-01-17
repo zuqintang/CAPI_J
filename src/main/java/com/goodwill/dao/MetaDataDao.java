@@ -11,11 +11,9 @@ import com.goodwill.domain.Field_Code;
 import com.goodwill.domain.Voption;
 
 public interface MetaDataDao {
-	public abstract List<T> GetElementListBySetID(@Param("datasetID") String datasetID,
-			@Param("keyword") String keyword, @Param("limit") int limit, @Param("offset") int offset);
+	public abstract List<T> GetElementListBySetID(Map<String,Object> param);
 
-	public abstract Integer CountElementListBySetID(@Param("datasetID") String datasetID,
-			@Param("keyword") String keyword);
+	public abstract Integer CountElementListBySetID(Map<String,Object> param);
 
 	public abstract List<Map> SumMetaDataByStandards();
 
@@ -30,4 +28,5 @@ public interface MetaDataDao {
 	public abstract List<Voption> GetOptionList(Map<String, Object> param);
 	
 	public abstract Integer CountOptionList(Map<String,Object> param);
+	public abstract Integer CountFieldcodesList(Map<String,Object> param);
 }

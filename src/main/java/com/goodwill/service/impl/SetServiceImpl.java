@@ -31,13 +31,13 @@ public class SetServiceImpl implements SetService{
 		return setDao.CountSetList(param);
 	}
 	
-	public List<T> GetChildrenList(Integer activeItem,String datasetID,String keyword,Integer limit,Integer offset) {
-		if(activeItem == 1) 
+	public List<T> GetChildrenList(Map<String,Object> param) {
+		if(param.get("activeItem").equals(1)) 
 		{
-			return setDao.GetGroupListBySetID(datasetID, keyword, limit, offset);
-		}else if(activeItem == 2)
+			return setDao.GetGroupListBySetID(param);
+		}else if(param.get("activeItem").equals(2))
 		{
-			return metaDataDao.GetElementListBySetID(datasetID,keyword, limit, offset);
+			return metaDataDao.GetElementListBySetID(param);
 		}else 
 		{
 			return null;
@@ -45,11 +45,12 @@ public class SetServiceImpl implements SetService{
 	}
 	
 	
-	public Integer CountChildrenList(Integer activeItem,String datasetID,String keyword) {
-		if(activeItem == 1) {
-			return setDao.CountGroupListBySetID(datasetID, keyword);			
-		}else if(activeItem == 2) {
-			return metaDataDao.CountElementListBySetID(datasetID,keyword);
+	public Integer CountChildrenList(Map<String,Object> param) {
+		if(param.get("activeItem").equals(1)) 
+		{
+			return setDao.CountGroupListBySetID(param);			
+		}else if(param.get("activeItem").equals(2)){
+			return metaDataDao.CountElementListBySetID(param);
 		}else
 		{
 			return null;			

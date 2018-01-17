@@ -12,9 +12,9 @@ public interface SetService {
 	
 	Integer CountSetList(Map<String,Object> param);
 	
-	List<T> GetChildrenList(Integer activeItem,String datasetID,String keyword,Integer limit,Integer offset);
+	List<T> GetChildrenList(Map<String,Object> param);
 	
-	Integer CountChildrenList(Integer activeItem,String datasetID,String keyword);
+	Integer CountChildrenList(Map<String,Object> param);
 	
 	Integer AddSet(Set set);
 	

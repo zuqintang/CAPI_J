@@ -31,19 +31,18 @@
 			AND STANDARD = #{standard}
 		</if>
 	</select>
-	<select id="GetGroupListBySetID" resultType="com.goodwill.domain.Set">
+	<select id="GetGroupListBySetID" resultType="com.goodwill.domain.Set" parameterType="java.util.Map">
 		SELECT * FROM SETS
-		LEFT JOIN SET_VS_ELEMENT ON CID = SETS.ID
+		LEFT JOIN SET_VS_ELEMENT ON SET_VS_ELEMENT.DS_VS_CODE = SETS.DS_CODE
 		WHERE (SETS.DS_CODE=#{keyword} or DS_NAME like CONCAT('%', #{keyword},
-		'%'))
-		AND FID = #{datasetID} AND CTYPE =1 LIMIT #{limit} OFFSET #{offset}
+		'%')) AND DATA_SET_TYPE = 1 AND  SET_VS_ELEMENT.DS_CODE= #{datasetID}		
+		LIMIT #{limit} OFFSET #{offset}
 	</select>
-	<select id="CountGroupListBySetID" resultType="Integer">
+	<select id="CountGroupListBySetID" resultType="Integer" parameterType="java.util.Map">
 		SELECT COUNT(*)
-		FROM SETS LEFT JOIN SET_VS_ELEMENT ON CID = SETS.ID
+		FROM SETS 
 		WHERE (SETS.DS_CODE=#{keyword} or DS_NAME like CONCAT('%', #{keyword},
-		'%'))
-		AND FID = #{datasetID} AND CTYPE =1
+		'%')) AND DATA_SET_TYPE = 1 AND  SET_VS_ELEMENT.DS_CODE= #{datasetID}
 	</select>
 	<insert id="AddSet" parameterType="Set">
 		INSERT INTO SETS(

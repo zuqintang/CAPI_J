@@ -48,26 +48,6 @@ public class Set_Vs_Element implements Serializable {
      */
     private String UPDATED_AT ;
 
-    /**
-     *  父ID
-     */
-    private Integer FID ;
-
-    /**
-     *  父亲类型，0为数据集1数据组，2为数据元，3为值域
-     */
-    private Integer FTYPE ;
-
-    /**
-     *  儿子ID
-     */
-    private Integer CID ;
-
-    /**
-     *  儿子类型，0为数据集，1为数据组，2为数据元，3为值域
-     */
-    private Integer CTYPE ;
-
     public Integer getID() {
         return ID;
     }
@@ -130,38 +110,6 @@ public class Set_Vs_Element implements Serializable {
 
     public void setUPDATED_AT(String UPDATED_AT) {
         this.UPDATED_AT = UPDATED_AT;
-    }
-
-    public Integer getFID() {
-        return FID;
-    }
-
-    public void setFID(Integer FID) {
-        this.FID = FID;
-    }
-
-    public Integer getFTYPE() {
-        return FTYPE;
-    }
-
-    public void setFTYPE(Integer FTYPE) {
-        this.FTYPE = FTYPE;
-    }
-
-    public Integer getCID() {
-        return CID;
-    }
-
-    public void setCID(Integer CID) {
-        this.CID = CID;
-    }
-
-    public Integer getCTYPE() {
-        return CTYPE;
-    }
-
-    public void setCTYPE(Integer CTYPE) {
-        this.CTYPE = CTYPE;
     }
 
 }
