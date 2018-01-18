@@ -44,7 +44,7 @@ public class MetadataServiceImpl implements MetadataService {
 	}
 	
 	public List<Field_Code> GetFieldcodesList(Map<String, Object> param) {
-		return metaDataDao.GetFieldcodeList(param);
+		return metaDataDao.GetFieldcodesList(param);
 	}
 
 	public Integer CountFieldcodesList(Map<String, Object> param) {

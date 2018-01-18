@@ -12,23 +12,13 @@ public interface MetadataService {
 
 	Integer CountMetaList(Map<String, Object> param);
 
-	List<Field_Code> GetFieldcodeList(Map<String, Object> param);
-	
-	List<Field_Code> GetFieldcodesList(Map<String, Object> param);
-	
-	Integer CountFieldcodesList(Map<String, Object> param);
+	List<Field_Code> GetFieldcodeList(Map<String, Object> param);	
 	
 	List<Voption> GetOptionList(Map<String, Object> param);
 
 	Integer CountOptionList(Map<String, Object> param);
 	
-	// List<T> GetChildrenList(Integer activeItem,String datasetID,String
-	// keyword,Integer limit,Integer offset);
-	//
-	// Integer CountChildrenList(Integer activeItem,String datasetID,String
-	// keyword);
-	//
-	// Integer AddSet(Set set);
-	//
-	// List<Set> GetSetInfo(Integer ID);
+	List<Field_Code> GetFieldcodesList(Map<String, Object> param);
+	
+	Integer CountFieldcodesList(Map<String, Object> param);	
 }

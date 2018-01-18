@@ -28,5 +28,8 @@ public interface MetaDataDao {
 	public abstract List<Voption> GetOptionList(Map<String, Object> param);
 	
 	public abstract Integer CountOptionList(Map<String,Object> param);
+	
+	public abstract List<Field_Code> GetFieldcodesList(Map<String, Object> param);
+	
 	public abstract Integer CountFieldcodesList(Map<String,Object> param);
 }

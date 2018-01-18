@@ -2,21 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.goodwill.dao.MetaDataDao">
-	<select id="GetElementListBySetID" resultType="com.goodwill.domain.Element" parameterType="java.util.Map">
+	<select id="GetElementListBySetID" resultType="com.goodwill.domain.Element"
+		parameterType="java.util.Map">
 		SELECT DISTINCT * FROM
-		ELEMENTS LEFT JOIN SET_VS_ELEMENT ON DS_VS_CODE = METADATA_IDENTiFY
-		LEFT JOIN SETS ON SETS.DS_CODE = SET_VS_ELEMENT.DS_CODE
-		WHERE  DS_VS_TYPE = 0 AND
+		ELEMENTS LEFT JOIN SET_VS_ELEMENT
+		ON DS_VS_CODE = METADATA_IDENTiFY
+		LEFT JOIN SETS ON SETS.DS_CODE =
+		SET_VS_ELEMENT.DS_CODE
+		WHERE DS_VS_TYPE = 0 AND
 		(ELEMENTS.METADATA_IDENTIFY=#{keyword} or ELEMENTS.METADATA_NAME like
 		CONCAT('%', #{keyword}, '%'))
-		AND SETS.ID = #{datasetID} LIMIT #{limit} OFFSET #{offset}
+		AND SETS.ID = #{datasetID} LIMIT #{limit}
+		OFFSET #{offset}
 	</select>
-	<select id="CountElementListBySetID" resultType="Integer" parameterType="java.util.Map">
+	<select id="CountElementListBySetID" resultType="Integer"
+		parameterType="java.util.Map">
 		SELECT COUNT(DISTINCT DS_VS_CODE)
-		FROM ELEMENTS 
+		FROM ELEMENTS
 		LEFT JOIN SET_VS_ELEMENT ON DS_VS_CODE = METADATA_IDENTiFY
-		LEFT JOIN SETS ON SETS.DS_CODE = SET_VS_ELEMENT.DS_CODE
-		WHERE  DS_VS_TYPE = 0 AND
+		LEFT JOIN SETS
+		ON SETS.DS_CODE = SET_VS_ELEMENT.DS_CODE
+		WHERE DS_VS_TYPE = 0 AND
 		(ELEMENTS.METADATA_IDENTIFY=#{keyword} or ELEMENTS.METADATA_NAME like
 		CONCAT('%', #{keyword}, '%'))
 		AND SETS.ID = #{datasetID}
@@ -25,10 +31,12 @@
 		SELECT STANDARD
 		AS FLAG ,COUNT(METADATA_IDENTIFY) AS TOTAL
 		FROM ELEMENTS
-		GROUP BY STANDARD
+		GROUP BY
+		STANDARD
 	</select>
 	<select id="SumMetaDataByStatus" resultType="com.goodwill.domain.SumResult">
-		SELECT STATUS AS FLAG ,COUNT(METADATA_IDENTIFY) AS TOTAL
+		SELECT STATUS AS
+		FLAG ,COUNT(METADATA_IDENTIFY) AS TOTAL
 		FROM ELEMENTS
 		GROUP BY `STATUS`
 	</select>
@@ -54,31 +62,54 @@
 		parameterType="java.util.Map">
 		SELECT * FROM FIELD_CODES a
 		LEFT JOIN ELEMENTS b
-		ON a.FIELDCODE_TABLECODE =b.FIELDCODE_TABLECODE
+		ON
+		a.FIELDCODE_TABLECODE =b.FIELDCODE_TABLECODE
 		WHERE
 		(a.FIELDCODE_TABLECODE=#{keyword} or a.FIELDCODE_NAME like
 		CONCAT('%',
 		#{keyword}, '%')) AND b.ID = #{elementID}
-		ORDER BY a.CREATE_DATE DESC LIMIT #{limit} OFFSET #{offset}
+		ORDER BY a.CREATE_DATE DESC
+		LIMIT #{limit} OFFSET #{offset}
 	</select>
 	<select id="GetOptionList" resultType="com.goodwill.domain.Voption"
 		parameterType="java.util.Map">
 		SELECT * FROM VOPTIONS a
 		LEFT JOIN FIELD_CODES b
-		ON a.FIELDCODE_TABLECODE =b.FIELDCODE_TABLECODE
+		ON
+		a.FIELDCODE_TABLECODE =b.FIELDCODE_TABLECODE
 		WHERE
 		(a.FIELDCODE_TABLECODE=#{keyword} or a.FIELDCODE_VALUE_CN_NAME like
 		CONCAT('%',
 		#{keyword}, '%')) AND b.ID = #{fieldcodeID}
-		ORDER BY a.FIELDORDER LIMIT #{limit} OFFSET #{offset}
+		ORDER BY
+		a.FIELDORDER LIMIT #{limit} OFFSET #{offset}
 	</select>
 	<select id="CountOptionList" resultType="Integer" parameterType="java.util.Map">
 		SELECT COUNT(*) FROM VOPTIONS a
 		LEFT JOIN FIELD_CODES b
-		ON a.FIELDCODE_TABLECODE =b.FIELDCODE_TABLECODE
+		ON
+		a.FIELDCODE_TABLECODE =b.FIELDCODE_TABLECODE
 		WHERE
 		(a.FIELDCODE_TABLECODE=#{keyword} or a.FIELDCODE_VALUE_CN_NAME like
 		CONCAT('%',
 		#{keyword}, '%')) AND b.ID = #{fieldcodeID}
+	</select>
+
+	<select id="GetFieldcodesList" resultType="com.goodwill.domain.Field_Code"
+		parameterType="java.util.Map">
+		SELECT * FROM FIELD_CODES
+		WHERE
+		(FIELDCODE_TABLECODE=#{keyword} or FIELDCODE_NAME like
+		CONCAT('%',
+		#{keyword}, '%'))
+		ORDER BY CREATE_DATE DESC LIMIT #{limit} OFFSET #{offset}
+	</select>
+
+	<select id="CountFieldcodesList" resultType="Integer"
+		parameterType="java.util.Map">
+		SELECT COUNT(*) FROM FIELD_CODES
+		WHERE
+		(FIELDCODE_TABLECODE=#{keyword} OR FIELDCODE_NAME LIKE
+		CONCAT('%',#{keyword},'%'))
 	</select>
 </mapper>
