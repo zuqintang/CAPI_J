@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.goodwill.dao.MetaDataDao;
 import com.goodwill.dao.SetDao;
 import com.goodwill.domain.Element;
-import com.goodwill.domain.Field_Code;
 import com.goodwill.domain.Set;
 import com.goodwill.domain.Voption;
 import com.goodwill.service.MetadataService;
@@ -31,21 +30,13 @@ public class MetadataServiceImpl implements MetadataService {
 		return metaDataDao.CountMetaList(param);
 	}
 
-	public List<Field_Code> GetFieldcodeList(Map<String, Object> param) {
-		return metaDataDao.GetFieldcodeList(param);
-	}
-
 	public List<Voption> GetOptionList(Map<String, Object> param) {
 		return metaDataDao.GetOptionList(param);
 	}
 
 	public Integer CountOptionList(Map<String, Object> param) {
 		return metaDataDao.CountOptionList(param);
-	}
-	
-	public List<Field_Code> GetFieldcodesList(Map<String, Object> param) {
-		return metaDataDao.GetFieldcodesList(param);
-	}
+	}	
 
 	public Integer CountFieldcodesList(Map<String, Object> param) {
 		return metaDataDao.CountFieldcodesList(param);

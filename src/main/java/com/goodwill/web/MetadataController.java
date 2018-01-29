@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.goodwill.util.BaseController;
 import com.goodwill.domain.Element;
-import com.goodwill.domain.Field_Code;
 import com.goodwill.domain.Voption;
 import com.goodwill.service.MetadataService;
 
@@ -41,43 +40,7 @@ public class MetadataController extends BaseController {
 			execResult = FromBoolean(false, e.getMessage());
 		}
 		return JSONObject.fromObject(execResult);
-	}
-
-	@RequestMapping(value = "/fetchField", method = RequestMethod.POST)
-	@ResponseBody
-	public JSONObject FetchFieldcode(@RequestBody Map<String, Object> param) {
-		Object execResult;
-		try {
-			List<Field_Code> list = metadataService.GetFieldcodeList(param);
-			if (list == null || list.size() == 0) {
-				execResult = FromObject(list, list.size(), "1", "没有找到匹配的记录");
-			} else {
-				execResult = FromObject(list, 1, "0", "查询成功");
-			}
-		} catch (Exception e) {
-			execResult = FromBoolean(false, e.getMessage());
-		}
-		return JSONObject.fromObject(execResult);
-	}
-	
-	@RequestMapping(value = "/fetchFieldcodes", method = RequestMethod.POST)
-	@ResponseBody
-	public JSONObject FetchFieldcodes(@RequestBody Map<String, Object> param) {
-		Object execResult;
-		try {
-			List<Field_Code> list = metadataService.GetFieldcodesList(param);
-			if (list == null || list.size() == 0) {
-				execResult = FromObject(list, list.size(), "1", "没有找到匹配的记录");
-			} else {
-				long total = metadataService.CountFieldcodesList(param);
-				long PageNum = (long) (Math.ceil((float) total / 10));
-				execResult = FromObject(list, PageNum, "0", "查询成功");
-			}
-		} catch (Exception e) {
-			execResult = FromBoolean(false, e.getMessage());
-		}
-		return JSONObject.fromObject(execResult);
-	}
+	}	
 	
 	@RequestMapping(value = "/fetchOption", method = RequestMethod.POST)
 	@ResponseBody
